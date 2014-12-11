@@ -47,9 +47,11 @@
                 <a class="btn btn-primary edit-button" data-toggle="modal" data-target="#editModal" data-id="{{ $user->id }}">
                   <i class="glyphicon glyphicon-edit"></i> Edit
                 </a>
+    @if (Session::get('user_id') != $user->id)
                 <a class="btn btn-danger delete-button" data-toggle="modal" data-target="#confirmModal" data-id="{{ $user->id }}">
                   <i class="glyphicon glyphicon-trash"></i> Delete
                 </a>
+    @endif
               </td>
             </tr>
   @endforeach
