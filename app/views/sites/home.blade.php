@@ -6,4 +6,5 @@
       <p>Home Shop Online 123</p>
    </div>
 </div>
+<?php phpinfo(); ?>
 @stop
