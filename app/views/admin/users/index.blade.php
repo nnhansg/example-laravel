@@ -126,6 +126,21 @@
           </div>
         </div>
      </div>
+
+     <div class="row">
+      <div class="col-md-12">
+        <form id="importUserForm" role="form" method="post" enctype="multipart/form-data" action="{{{ URL::to('admin/users/import-users') }}}">
+          <div class="form-group">
+            <label for="fileInput">File input</label>
+            <input type="file" id="fileInput" name="fileInput" />
+            <p class="help-block">Choose a file (*.xls, *.csv).</p>
+            <p class="help-block">Today {{{ time() }}}</p>
+            <p class="help-block">Upload file to path: {{{ public_path() . '/imports/' }}}</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Upload file</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 @stop

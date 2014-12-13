@@ -17,7 +17,7 @@
           </button>
           {{{ Session::get('alert_danger') }}}
         </div>
-        <form role="form" method="post" action="" ng-init="firstName='John';lastName='Doe'">
+        <form role="form" method="post" action="">
            <fieldset>
                <div class="form-group">
                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" value="{{{ $remember['email'] }}}">

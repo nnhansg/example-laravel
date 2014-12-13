@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('admin/users/import-users', 'UserController@postImportUsers');
+
 Route::post('admin/users/delete', 'UserController@postDeleteUserById');
 
 Route::post('admin/users/edit/save', 'UserController@postSaveEditUserById');

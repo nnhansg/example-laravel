@@ -217,4 +217,63 @@ class UserController extends BaseController {
 
         return Response::json($response);
     }
+
+    ///
+    public function postImportUsers() {
+        $userId = Session::get('user_id');
+
+        if ($userId == null) {
+            return Redirect::to('admin/login');
+        }
+
+        if (Input::hasFile('fileInput'))
+        {
+            $file = Input::file('fileInput');
+            $path = $file->getRealPath();
+            $name = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $size = $file->getSize();
+            $mime = $file->getMimeType();
+
+            $destinationPath = public_path() . '/imports/';
+            $newFileName = time() . '-' . $name;
+            $file->move($destinationPath, $newFileName);
+
+            $countColumns = 5;
+            $stepColumn = 0;
+
+            Excel::load($destinationPath . $newFileName, function($reader) {
+                // Getting all results
+                $results = $reader->get();
+
+                // // Loop through all sheets
+                $reader->each(function($row) {
+                    // Import a new user to Users table
+                    $model = User::whereRaw('email = ?', array($row->email))->first();
+
+                    if ($model == null) {
+                        $user = new User;
+                        $user->name = $row->name;
+                        $user->email = $row->email;
+                        $user->password = $row->password;
+                        $user->created_at = $row->created_at;
+                        $user->updated_at = $row->updated_at;
+                        // var_dump($user);
+                        if ($user->save()) {
+                            echo 'Inserted a record...<br />';
+                        } else {
+                            echo 'Not inserted a record...<br />';
+                        }
+                    } else {
+                        echo 'Skip a record same...<br />';
+                    }
+
+                });
+            });
+
+            return '<br />' . $path . '/' . $name . '<br />' . $size . '<br />' . $mime;
+        } else {
+            return "You need to choose file!";
+        }
+    }
 }
