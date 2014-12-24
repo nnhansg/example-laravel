@@ -8,7 +8,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>
         @section('title')
-          Admin - Shop Online 123
+          Admin - Shop Online 123456
         @show
       </title>
       <meta name="description" content="">
