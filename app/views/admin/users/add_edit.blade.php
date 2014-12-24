@@ -1,7 +1,7 @@
 @extends('admin.layouts.default')
 
 @section('title')
-   Add new user :: @parent
+   Add new user 123 :: @parent
 @stop
 
 @section('content')
